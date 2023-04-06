@@ -25,7 +25,8 @@ public class Kalkulaator {
     private JButton buttonDot;
     private JButton buttonPM;
     private JButton buttonBack;
-    private BigDecimal a, b, result; // Variables for two numbers and result
+    private BigDecimal a, b; // Variables for two numbers and result
+    private BigDecimal result = null;
     private char op; // Character for storing operation
 
     // Helper function to check if the number equals to 0
@@ -35,6 +36,14 @@ public class Kalkulaator {
         long num = Long.parseLong(txtDisplay.getText());
         if (num == 0) txtDisplay.setText("");
     }
+
+    // Helper function to check if a calculation has been done
+    private void isNull() {
+        if (result != null) {
+            result = null;
+            txtDisplay.setText("0");
+        }
+    }
     public Kalkulaator() {
         txtDisplay.setText("0");
         // Sets the display to zero
@@ -42,56 +51,67 @@ public class Kalkulaator {
         // Adds numbers from 0 to 9
         button1.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "1");
         });
         button2.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "2");
         });
         button3.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "3");
         });
         button4.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "4");
         });
         button5.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "5");
         });
         button6.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "6");
         });
         button7.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "7");
         });
         button8.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "8");
         });
         button9.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "9");
         });
         button0.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 7) return;
+            isNull();
             isFirstNum();
             txtDisplay.setText(txtDisplay.getText() + "0");
         });
         button00.addActionListener(actionEvent -> {
             if (txtDisplay.getText().length() > 6) return;
+            isNull();
             if(!txtDisplay.getText().equals("0")) txtDisplay.setText(txtDisplay.getText() + "00");
         });
         // Adds comma
@@ -160,15 +180,15 @@ public class Kalkulaator {
             switch (op) {
                 case '+' -> {
                     result = a.add(b);
-                    txtDisplay.setText(result.stripTrailingZeros().toString());
+                    txtDisplay.setText(result.stripTrailingZeros().toPlainString());
                 }
                 case '-' -> {
                     result = a.subtract(b);
-                    txtDisplay.setText(result.stripTrailingZeros().toString());
+                    txtDisplay.setText(result.stripTrailingZeros().toPlainString());
                 }
                 case '*' -> {
                     result = a.multiply(b);
-                    txtDisplay.setText(result.stripTrailingZeros().toString());
+                    txtDisplay.setText(result.stripTrailingZeros().toPlainString());
                 }
                 case '/' -> {
                     if (b.equals(BigDecimal.valueOf(0))) {
@@ -176,7 +196,7 @@ public class Kalkulaator {
                         return;
                     }
                     result = a.divide(b, 10, RoundingMode.DOWN);
-                    txtDisplay.setText(result.stripTrailingZeros().toString());
+                    txtDisplay.setText(result.stripTrailingZeros().toPlainString());
                 }
                 default -> {
                 }
